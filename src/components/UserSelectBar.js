@@ -16,14 +16,13 @@ const UserBubble = styled.div `
 `
 
 const Bar = styled.div `
-    width: 400px;
+    width: 330px;
     height: 60px;
     display: flex;
     background: white;
     justify-items: center;
     align-items: center;
     color: black;
-    border: 1px solid black;
     
     :hover{
         background: whitesmoke;
