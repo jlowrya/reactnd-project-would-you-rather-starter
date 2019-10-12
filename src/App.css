@@ -1,8 +1,8 @@
 .App {
   text-align: center;
-  display: grid;
+  /* display: grid;
   justify-items: center;
-  align-items: center;
+  align-items: center; */
   min-height: 100vh;
 }
 
