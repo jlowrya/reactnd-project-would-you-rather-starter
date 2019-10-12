@@ -9,9 +9,13 @@ const Option = styled.div  `
     height: 400px;
     width: 400px;
     border-radius: 100px;
-
     color: white;
-    background-color: ${props => props.primary ? 'lightblue' : 'red'}
+    background-color: ${props => props.primary ? 'lightblue' : 'red'};
+
+    :hover{
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        transform: translateY(-5px);
+    }
 `
 
 const OptionText = styled.div`
@@ -24,23 +28,11 @@ const OptionText = styled.div`
 `
 
 
-const OptionCard = (props) => {
+function OptionCard(props){
+    const option = props.primary ? <Option primary={true}><OptionText>{props.option}</OptionText></Option> : <Option><OptionText>{props.option}</OptionText></Option>
     return (
-        <Option primary onClick={()=> console.log('Option clicked')}>
-           <OptionText>
-           I certify and affirm that the information provided to access my voter registration is my own or I am expressly authorized 
-           by the voter to access this information. I understand that it is unlawful to access the record of any other voter, 
-           punishable as computer fraud under Va. Code § 18.2-152.3.*I certify and affirm that the information provided to access 
-           my voter registration is my own or I am expressly authorized by the voter to access this information. I understand that it 
-           is unlawful to access the record of any other voter, punishable as computer fraud under Va. Code § 18.2-152.3.*I certify 
-           and affirm that the information provided to access my voter registration is my own or I am expressly authorized by 
-           the voter to access this information. I understand that it is unlawful to access the record of any other voter, 
-           punishable as computer fraud under Va. Code § 18.2-152.3.* 
-           </OptionText> 
-           {/* <OptionText>I understand that it is unlawful to access the record of any other voter, 
-           punishable as computer fraud under Va. Code § 18.2-152.3.* I understand that it is unlawful to access the record of any other voter, 
-           punishable as computer fraud under Va. Code § 18.2-152.3.* </OptionText> */}
-        </Option>
+        <div>{option}</div>
+       
     )
 }
 
