@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import UserSelectDropDown from './components/UserSelectDropDown'
+import UserSelectBox from './components/UserSelectBox'
 import users from './data';
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
        
-          <UserSelectDropDown users={users}/>
+          <UserSelectBox users={users}/>
        
     </div>
   );

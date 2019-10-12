@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import UserSelectBar from './UserSelectBar';
 
-const SelectTitleBox = styled.span`
+const SelectTitleBox = styled.div`
     width: 330px;
     height: 60px;
     background: white;
@@ -20,21 +20,19 @@ const ArrowBox = styled.div`
     display: grid;
     justify-items: center;
     align-items: center;
-`
-
-const TestBar = styled.div`
-    width: 330px;
-    height: 60px;
-    background: red;
+    background: blue;
+    color: white;
+    position: absolute;
 `
 
 const DropDown = styled.div `
     width: 400px;
     height: 60px;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 2 auto;
     border: 1px solid blue;
-    border-radius: 100px;
+    ${'' /* border-radius: 100px; */}
+    max-width: 400px;
 `
 
 const DropDownOptions = styled.div `
@@ -49,34 +47,20 @@ const DropDownOptions = styled.div `
 class UserSelectDropDown extends Component{
     constructor(props){
         super(props);
-
-        this.state = {
-            showOptions: false,
-            selectedUser: {
-                id: 'tylermcginnis',
-                name: 'Tyler McGinnis',
-                avatarURL: '../images/tylermcginnis.png',
-                answers: {
-                  "vthrdm985a262al8qx3do": 'optionOne',
-                  "xj352vofupe1dqz9emx13r": 'optionTwo',
-                },
-                questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
-              },
-        }
     }
 
     render(){
-        const arrow = this.state.showOptions===true ? faArrowUp : faArrowDown;
-        console.log(this.state.showOptions)
+        const arrow = this.props.showOptions=== true ? faArrowUp : faArrowDown;
         return(
             <div>
-                <DropDown onClick={() => (this.setState({showOptions: !this.state.showOptions}))}>
+                <DropDown onClick={() => this.props.toggleDropdown(this.props.showOptions)}>
                     <ArrowBox><FontAwesomeIcon icon={arrow} size="large"/></ArrowBox>
-                    <SelectTitleBox>{this.state.selectedUser ? this.state.selectedUser.name : ''}</SelectTitleBox>
+                    <SelectTitleBox>{this.props.selectedUser ? this.props.selectedUser.name : 'Select a user'}</SelectTitleBox>
                 </DropDown>
-                <DropDownOptions hide={!this.state.showOptions}>
-                    {Object.keys(this.props.users).map((user)=>(
-                        <UserSelectBar user={this.props.users[user]}/>
+                {/* Drop down option receives click instead of the user select bar. On click works for when put in the drop down options but not the user select bar */}
+                <DropDownOptions hide={!this.props.showOptions}>
+                    {Object.keys(this.props.users).map((key)=>(
+                        <UserSelectBar onClick={this.props.handleUserSelection} id={key}  user={this.props.users[key]}/>
                     ))}
                 </DropDownOptions>
             </div>

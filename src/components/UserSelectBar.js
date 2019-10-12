@@ -46,7 +46,7 @@ function UserSelectBar (props){
         image = john
     }
     return (
-        <Bar>
+        <Bar onClick={() => props.onClick(props.user)}>
             <UserBubble avatar={image} />
             <Name>{props.user.name}</Name>
         </Bar>
